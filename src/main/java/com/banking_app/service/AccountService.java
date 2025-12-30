@@ -8,6 +8,8 @@ public interface AccountService {
 
     AccountDto createAccount(AccountDto accountDto);
 
+    void deleteAccount(long id);
+
     AccountDto getAccountById(Long id);
 
     AccountDto depositMoneyById(Long id, double money);

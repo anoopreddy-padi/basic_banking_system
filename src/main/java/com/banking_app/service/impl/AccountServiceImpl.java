@@ -31,6 +31,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public void deleteAccount(long id){
+        Account account = accountRepository.findById(id).orElseThrow(()->new RuntimeException("Account not found"));
+        accountRepository.delete(account);
+    }
+
+    @Override
     public AccountDto getAccountById(Long id){
         Account account = accountRepository.findById(id).orElseThrow(()-> new RuntimeException("Account does not exists"));
         System.out.println(account);
