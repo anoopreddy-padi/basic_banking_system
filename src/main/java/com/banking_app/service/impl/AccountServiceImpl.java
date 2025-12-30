@@ -1,5 +1,8 @@
 package com.banking_app.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -48,5 +51,15 @@ public class AccountServiceImpl implements AccountService {
         account.setBalance(account.getBalance()-money);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.mapToAccountDto(savedAccount);
+    }
+
+    @Override
+    public List<AccountDto> getAllAccounts(){
+        List<Account> accounts = accountRepository.findAll();
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for(Account account : accounts){
+            accountDtos.add(AccountMapper.mapToAccountDto(account));
+        }
+        return accountDtos;
     }
 }

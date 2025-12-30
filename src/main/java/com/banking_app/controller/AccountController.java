@@ -1,5 +1,6 @@
 package com.banking_app.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,12 @@ public class AccountController {
     public ResponseEntity<AccountDto> withdrawMoneyById(@PathVariable Long id, @RequestBody Map<String,Double> request){
         double money = request.get("money");
         return new ResponseEntity<>(accountService.withdrawMoneyById(id, money),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<AccountDto>> getAllAccounts(){
+        List<AccountDto> accounts = accountService.getAllAccounts();
+        return ResponseEntity.ok(accounts);
     }
 
 }
